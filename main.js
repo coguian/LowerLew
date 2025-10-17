@@ -93,15 +93,7 @@ if (sessionStorage.getItem('pages')) {
   },500)
 }
 
-if (btn) {
-  input.addEventListener('keyup', function(e){
-    e.preventDefault()
-    var key = e.which || e.keyCode
-    if (key == 13) {
-      searchBar()
-    }
-  })
-  
+if (btn) {  
   btn.addEventListener('click', searchBar)
   async function searchBar() {
     if (pages.value < 18) {
@@ -111,6 +103,13 @@ if (btn) {
     console.log("input: " + input.value)
     search("r34",input.value,pages.value)
   }
+  input.addEventListener('keyup', function(e){
+    e.preventDefault()
+    var key = e.which || e.keyCode
+    if (key == 13) {
+      btn.click()
+    }
+  })
 }
 randomBtn.addEventListener('click', randomState)
 async function randomState() {
