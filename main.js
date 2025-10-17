@@ -1,4 +1,4 @@
-console.log('hey!')
+console.log('hey! v1.6')
 
 api_key = "No api key for you! hehe"
 videoUrl = new URLSearchParams(window.location.search);
