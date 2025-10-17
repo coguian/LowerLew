@@ -14,6 +14,9 @@ async function search(web, tag, quantity) {
   if (sessionStorage.getItem('random')) {
     tags = tags + "+sort:random+score:>25"
   }
+  else {
+     tags = tags + "+sort:score:desc"
+  }
   let url = "https://api.rule34.xxx/index.php?api_key=" + api_key + "&user_id=2995454&page=dapi&s=post&q=index&limit="+ quantity +"&tags="+ tags +"&json=1"
   const container = document.getElementById('images');
   const loading = document.createElement('img')
