@@ -1,4 +1,6 @@
-console.log('hey! v1.6')
+version = "1.7"
+console.log('hey!)
+console.log("Version: " + version
 
 api_key = "No api key for you! hehe"
 videoUrl = new URLSearchParams(window.location.search);
@@ -10,6 +12,7 @@ sizeImage = window.innerWidth / 3.47
 
 async function search(web, tag, quantity) {
   console.clear()
+  console.log("Version: " + version
   tags = tag.replaceAll(" ","+")
   if (sessionStorage.getItem('random')) {
     tags = tags + "+sort:random+score:>25"
