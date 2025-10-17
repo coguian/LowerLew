@@ -1,4 +1,4 @@
-version = "1.7"
+version = "1.8"
 console.log('hey!')
 console.log("Version: " + version)
 
@@ -12,7 +12,7 @@ sizeImage = window.innerWidth / 3.47
 
 async function search(web, tag, quantity) {
   console.clear()
-  console.log("Version: " + version
+  console.log("Version: " + version)
   tags = tag.replaceAll(" ","+")
   if (sessionStorage.getItem('random')) {
     tags = tags + "+sort:random+score:>25"
