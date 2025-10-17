@@ -1,6 +1,6 @@
 version = "1.7"
 console.log('hey!')
-console.log("Version: " + version
+console.log("Version: " + version)
 
 api_key = "No api key for you! hehe"
 videoUrl = new URLSearchParams(window.location.search);
