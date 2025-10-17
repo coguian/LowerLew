@@ -1,5 +1,5 @@
 version = "1.7"
-console.log('hey!)
+console.log('hey!')
 console.log("Version: " + version
 
 api_key = "No api key for you! hehe"
