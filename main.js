@@ -94,7 +94,7 @@ if (sessionStorage.getItem('pages')) {
 }
 
 if (btn) {
-  pages.addEventListener('keyup', function(e){
+  input.addEventListener('keyup', function(e){
     e.preventDefault()
     var key = e.which || e.keyCode
     if (key == 13) {
