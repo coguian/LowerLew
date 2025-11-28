@@ -126,8 +126,9 @@ if (sessionStorage.getItem('random')) {
 input.value = sessionStorage.getItem('current_search');
 
 
-input.addEventListener('input', suggestions())
+input.addEventListener('input', suggestions)
 async function suggestions() {
+  console.log("suggestions")
   suggestionsBox.innerHTML = ''
   
   
