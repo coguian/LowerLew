@@ -1,0 +1,41 @@
+/*#images { */
+  /* Prevent vertical gaps  line-height: 0; 
+  -webkit-column-count: 5; 
+  -webkit-column-gap: 0px; 
+  -moz-column-count: 5; 
+  -moz-column-gap: 0px; 
+  column-count: 5; 
+  column-gap: 0px; 
+} */
+
+/*#tags-box {
+  line-height: 0;
+  -webkit-column-gap: 1px;
+  -moz-column-gap: 1px;
+  column-gap: 1px;
+} */
+  
+/*#images img { 
+  /* Just in case there are inline attributes 
+  width: 100% !important; 
+  height: auto !important;
+  } */
+  
+#suggestionsBox {
+  border: 1px solid #000000;
+  max-height: 150px;
+  overflow-y: auto;
+  position: absolute; /* Position relative to the input */
+  /* z-index: 100; /* Ensure it appears above other content */
+  background-color: rgba(181, 239, 173, 255);
+  width: calc(100% - 2px); /* Adjust width to match input */
+}
+
+.suggestion-item {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}
