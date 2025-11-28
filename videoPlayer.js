@@ -144,7 +144,7 @@ async function suggestions() {
     
     json.forEach(sug => {
       const suggestionItem = document.createElement('div');
-      suggestionItem.classList.add('suggestion-item'); // Add a class for styling
+      suggestionItem.classList.add('suggestion-item'); 
       suggestionItem.textContent = sug.label;
       suggestionItem.addEventListener('click', function(e) {
         e.preventDefault()
@@ -156,7 +156,7 @@ async function suggestions() {
         else {
           input.value = input.value.replace(" " + inputValue, " " + sugValue + " ")
         }
-        suggestionsBox.innerHTML = ''; // Hide suggestions after selection
+        suggestionsBox.innerHTML = ''; 
       });
       suggestionsBox.appendChild(suggestionItem);
     });
