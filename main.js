@@ -1,4 +1,4 @@
-version = "2.0"
+version = "2.1"
 console.log('hey!')
 console.log("Version: " + version)
 
@@ -120,17 +120,17 @@ async function suggestions() {
       const suggestionItem = document.createElement('div');
       suggestionItem.classList.add('suggestion-item');
       suggestionItem.textContent = sug.label;
+      suggestionItem.addEventListener('pointerdown', e => {
+        e.preventDefault(); 
+      });
       suggestionItem.addEventListener('click', function(e) {
         e.preventDefault()
-        e.target.focus()
+        input.focus()
         sugValue = sug.value.replace(" ", "_")
-        if (inputValues.length < 2) {
-        input.value = input.value.replace(inputValue, sugValue + " ")
-        }
-        else {
-          input.value = input.value.replace(" " + inputValue, " " + sugValue + " ")
-        }
+        inputValues[inputValues.length -1] = sugValue
+        input.value = inputValues.join(" ") + " "
         suggestionsBox.innerHTML = '';
+        e.target.focus()
       });
       suggestionsBox.appendChild(suggestionItem);
     });
