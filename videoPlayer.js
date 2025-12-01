@@ -128,7 +128,6 @@ input.value = sessionStorage.getItem('current_search');
 
 input.addEventListener('input', suggestionsF)
 async function suggestionsF() {
-  console.log("suggestions")
   suggestionsBox.innerHTML = ''
   
   
@@ -145,19 +144,19 @@ async function suggestionsF() {
     
     json.forEach(sug => {
       const suggestionItem = document.createElement('div');
-      suggestionItem.classList.add('suggestion-item'); 
+      suggestionItem.classList.add('suggestion-item');
       suggestionItem.textContent = sug.label;
+      suggestionItem.addEventListener('pointerdown', e => {
+        e.preventDefault(); 
+      });
       suggestionItem.addEventListener('click', function(e) {
         e.preventDefault()
-        e.target.focus()
+        input.focus()
         sugValue = sug.value.replace(" ", "_")
-        if (inputValues.length < 2) {
-        input.value = input.value.replace(inputValue, sugValue + " ")
-        }
-        else {
-          input.value = input.value.replace(" " + inputValue, " " + sugValue + " ")
-        }
-        suggestionsBox.innerHTML = ''; 
+        inputValues[inputValues.length -1] = sugValue
+        input.value = inputValues.join(" ") + " "
+        suggestionsBox.innerHTML = '';
+        e.target.focus()
       });
       suggestionsBox.appendChild(suggestionItem);
     });
