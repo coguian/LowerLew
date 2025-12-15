@@ -2,10 +2,10 @@
 var obj,
   source;
 
-api_key = "No api key for you! hehe"
-videoUrl = new URLSearchParams(window.location.search);
-if (videoUrl.has('api')) {
-  api_key = videoUrl.get('api')
+api_key = "No api key for you, hehe"
+videoUrl = new URL(window.location.href);
+if (videoUrl.searchParams.has('api')) {
+  api_key = videoUrl.searchParams.get('api')
 }
 var videoClicked
 async function getId(url) {
@@ -123,11 +123,12 @@ if (sessionStorage.getItem('random')) {
 }
 
 
-input.value = sessionStorage.getItem('current_search');
+input.value = videoUrl.searchParams.get("tags");
 
 
 input.addEventListener('input', suggestionsF)
 async function suggestionsF() {
+  console.log("suggestions")
   suggestionsBox.innerHTML = ''
   
   
@@ -144,19 +145,19 @@ async function suggestionsF() {
     
     json.forEach(sug => {
       const suggestionItem = document.createElement('div');
-      suggestionItem.classList.add('suggestion-item');
+      suggestionItem.classList.add('suggestion-item'); 
       suggestionItem.textContent = sug.label;
-      suggestionItem.addEventListener('pointerdown', e => {
-        e.preventDefault(); 
-      });
       suggestionItem.addEventListener('click', function(e) {
         e.preventDefault()
-        input.focus()
-        sugValue = sug.value.replace(" ", "_")
-        inputValues[inputValues.length -1] = sugValue
-        input.value = inputValues.join(" ") + " "
-        suggestionsBox.innerHTML = '';
         e.target.focus()
+        sugValue = sug.value.replace(" ", "_")
+        if (inputValues.length < 2) {
+        input.value = input.value.replace(inputValue, sugValue + " ")
+        }
+        else {
+          input.value = input.value.replace(" " + inputValue, " " + sugValue + " ")
+        }
+        suggestionsBox.innerHTML = ''; 
       });
       suggestionsBox.appendChild(suggestionItem);
     });
@@ -182,19 +183,20 @@ input.addEventListener('keyup', function(e){
   })
 
   async function searchBtn() {
-    sessionStorage.setItem('current_search', input.value);
+    videoUrl.searchParams.set("tags", input.value);
     sessionStorage.setItem('pages', pages.value)
-    window.location.href = "./?api=" + api_key
+    window.location.href = "./?api=" + api_key + "&tags=" + videoUrl.searchParams.get('tags')
   }
 
 
 
 
-if (videoUrl.has('id')) {
-  let url = 'https://api.rule34.xxx/index.php?api_key=' + api_key + '&user_id=2995454&page=dapi&s=post&q=index&id=' + videoUrl.get('id') + '&json=1'
+if (videoUrl.searchParams.has('id')) {
+  let url = 'https://api.rule34.xxx/index.php?api_key=' + api_key + '&user_id=2995454&page=dapi&s=post&q=index&id=' + videoUrl.searchParams.get('id') + '&json=1'
   getId(url)
 }
 else { 
   let url = 'https://api.rule34.xxx/index.php?api_key=' + api_key + '&user_id=2995454&page=dapi&s=post&q=index&id=8699761&json=1'
   getId(url)
 }
+
