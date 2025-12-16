@@ -74,7 +74,7 @@ async function getId(url) {
       holder = document.getElementById('playerHolder')
       var img = document.createElement("img");
       img.src = videoClicked[0].file_url
-      img.style.maxWidth = window.innerWidth
+      img.style.width = window.innerWidth * 0.97
       holder.insertBefore(img, holder.firstChild)
     }
 
