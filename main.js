@@ -1,8 +1,8 @@
-version = "2.2"
+version = "3.0"
 console.log('hey!')
 console.log("Version: " + version)
 
-api_key = "No api key for you, hehe"
+api_key = "no key for you! hehe"
 videoUrl = new URL(window.location.href);
 if (videoUrl.searchParams.has('api')) {
   api_key = videoUrl.searchParams.get('api')
@@ -43,7 +43,7 @@ async function search(web, tag, quantity) {
       async function clickB() {
         sessionStorage.setItem('current_search', tag);
         console.log("hey noob: " + i.file_url)
-        window.location.href = "player.html?api=" + api_key + "&tags=" + tag + "&id=" + i.id
+        window.location.href = "player.html?api=" + api_key + "&tags=" + tag.replaceAll(" ","+") + "&id=" + i.id
         
         
       }
@@ -89,11 +89,13 @@ btn.style.height = window.innerHeight / 36
 randomBtn.style.height = window.innerHeight / 36
 
 
+
+let current_search = videoUrl.searchParams.get('tags')
+current_search.replaceAll("+", " ")
+input.value = current_search
+
 if (sessionStorage.getItem('pages')) {
-  let current_search = videoUrl.searchParams.get('tags')
-  current_search.replaceAll("+", " ")
   let current_pages = sessionStorage.getItem('pages')
-  input.value = current_search
   pages.value = current_pages
   if (pages.value < 18) {
       pages.value = 18
@@ -183,6 +185,3 @@ async function randomState() {
 if (sessionStorage.getItem('random')) {
   randomBtn.style.backgroundColor = "green"
 }
-
-
-
