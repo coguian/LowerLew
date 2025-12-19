@@ -1,6 +1,5 @@
 /*#images { */
-  /* Prevent vertical gaps  line-height: 0; 
-  -webkit-column-count: 5; 
+  /*-webkit-column-count: 5; 
   -webkit-column-gap: 0px; 
   -moz-column-count: 5; 
   -moz-column-gap: 0px; 
@@ -16,7 +15,7 @@
 } */
   
 /*#images img { 
-  /* Just in case there are inline attributes 
+   
   width: 100% !important; 
   height: auto !important;
   } */
@@ -25,10 +24,11 @@
   border: 1px solid #000000;
   max-height: 150px;
   overflow-y: auto;
-  position: absolute; /* Position relative to the input */
-  /* z-index: 100; /* Ensure it appears above other content */
+  position: absolute;
   background-color: rgba(181, 239, 173, 255);
-  width: calc(100% - 2px); /* Adjust width to match input */
+  width: calc(100% * 0.97);
+  z-index: 10
+  
 }
 
 .suggestion-item {
@@ -38,4 +38,10 @@
 
 .suggestion-item:hover {
   background-color: #f0f0f0;
+}
+
+.video-container {
+  width: 100%;
+  position: relative;
+  z-index: 1
 }
