@@ -2,15 +2,16 @@
 var obj,
   source;
 
-api_key = "No api key for you, hehe"
+api_key = "no key for you! hehe"
 videoUrl = new URL(window.location.href);
 if (videoUrl.searchParams.has('api')) {
   api_key = videoUrl.searchParams.get('api')
 }
 var videoClicked
+
+const holder = document.getElementById('playerHolder')
 async function getId(url) {
   try {
-    holder = document.getElementById('playerHolder')
     const loading = document.createElement('img')
     loading.src = "images/Loading.gif"
     loading.width = 120
@@ -52,29 +53,39 @@ async function getId(url) {
       obj = document.createElement('video'); 
       obj.setAttribute('id', 'video-player'); 
       obj.setAttribute('class', 'video-js vjs-default-skin'); 
-      obj.setAttribute('width', window.innerWidth); 
-      obj.setAttribute('data-height', '264'); 
+      obj.setAttribute('width', '100%'); 
+      obj.setAttribute('data-height', 'auto'); 
       obj.setAttribute('controls', ' '); 
       obj.setAttribute('poster', videoClicked[0].preview_url); 
       obj.setAttribute('preload', 'auto'); 
       obj.setAttribute('fullscreen', true)
       obj.setAttribute('data-setup', '{}'); 
-
+      
+      
 
       source = document.createElement('source');
       source.setAttribute('type', 'video/mp4');
       source.setAttribute('src', videoClicked[0].file_url);
-
+      
+      
 
       holder.insertBefore(obj, holder.firstChild)
       obj.append(source)
+      
+      var player = videojs(obj);
+      player.width(window.innerWidth * 0.97);
+      player.height('auto');
+      player.mobileUi();
+      
+      
+      
     }
     else {
       console.log("current: image")
-      holder = document.getElementById('playerHolder')
       var img = document.createElement("img");
       img.src = videoClicked[0].file_url
       img.style.width = window.innerWidth * 0.97
+      img.style.maxWidth = window.innerWidth * 0.98
       holder.insertBefore(img, holder.firstChild)
     }
 
@@ -128,7 +139,6 @@ input.value = videoUrl.searchParams.get("tags");
 
 input.addEventListener('input', suggestionsF)
 async function suggestionsF() {
-  console.log("suggestions")
   suggestionsBox.innerHTML = ''
   
   
@@ -145,8 +155,12 @@ async function suggestionsF() {
     
     json.forEach(sug => {
       const suggestionItem = document.createElement('div');
-      suggestionItem.classList.add('suggestion-item'); 
+      suggestionItem.classList.add('suggestion-item');
+      suggestionItem.style.width = window.innerWidth * 0.97
       suggestionItem.textContent = sug.label;
+      suggestionItem.addEventListener('pointerdown', e => {
+        e.preventDefault(); 
+      });
       suggestionItem.addEventListener('click', function(e) {
         e.preventDefault()
         e.target.focus()
@@ -199,4 +213,3 @@ else {
   let url = 'https://api.rule34.xxx/index.php?api_key=' + api_key + '&user_id=2995454&page=dapi&s=post&q=index&id=8699761&json=1'
   getId(url)
 }
-
