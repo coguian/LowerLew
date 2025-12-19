@@ -89,10 +89,11 @@ btn.style.height = window.innerHeight / 36
 randomBtn.style.height = window.innerHeight / 36
 
 
-
-let current_search = videoUrl.searchParams.get('tags')
-current_search.replaceAll("+", " ")
-input.value = current_search
+if (videoUrl.searchParams.get('tags')) {
+  let current_search = videoUrl.searchParams.get('tags')
+  current_search.replaceAll("+", " ")
+  input.value = current_search
+}
 
 if (sessionStorage.getItem('pages')) {
   let current_pages = sessionStorage.getItem('pages')
